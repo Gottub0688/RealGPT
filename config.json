@@ -1,0 +1,141 @@
+{
+  "suburbs": [
+    "Burwood",
+    "Strathfield",
+    "Croydon",
+    "Ashfield",
+    "Homebush",
+    "Concord",
+    "Rhodes",
+    "Haberfield",
+    "Five Dock",
+    "Abbotsford"
+  ],
+
+  "monitoring": {
+    "price_change_threshold": 10,
+    "volume_change_threshold": 50,
+    "check_interval_hours": 1,
+    "enabled": true
+  },
+
+  "api_keys": {
+    "domain": "YOUR_DOMAIN_API_KEY_HERE",
+    "corelogic": "YOUR_CORELOGIC_API_KEY_HERE",
+    "google_maps": "YOUR_GOOGLE_MAPS_API_KEY_HERE"
+  },
+
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "your-email@gmail.com",
+    "password": "your-app-specific-password",
+    "recipients": [
+      "recipient1@example.com",
+      "recipient2@example.com"
+    ],
+    "send_daily_report": true,
+    "send_alerts_only": false
+  },
+
+  "schedule": {
+    "daily_report": "08:00",
+    "weekly_report_day": "Monday",
+    "weekly_report_time": "09:00",
+    "data_refresh": "02:00",
+    "quick_check_interval": 60
+  },
+
+  "database": {
+    "path": "property_data.db",
+    "backup_enabled": true,
+    "backup_interval_days": 7,
+    "retention_days": 365
+  },
+
+  "model": {
+    "type": "ensemble",
+    "algorithms": ["random_forest", "gradient_boosting"],
+    "retrain_interval_days": 30,
+    "min_samples_for_training": 100
+  },
+
+  "prediction": {
+    "method": "ridge",
+    "lookback_months": 12,
+    "max_forecast_months": 24,
+    "confidence_level": 0.95
+  },
+
+  "cache": {
+    "enabled": true,
+    "ttl_seconds": 3600,
+    "max_size_mb": 100
+  },
+
+  "logging": {
+    "level": "INFO",
+    "file": "logs/property_analyzer.log",
+    "max_size_mb": 10,
+    "backup_count": 5
+  },
+
+  "alerts": {
+    "high_priority_suburbs": [
+      "Burwood",
+      "Strathfield"
+    ],
+    "alert_types": {
+      "price_change": true,
+      "volume_change": true,
+      "new_listings": false,
+      "price_drop": true,
+      "market_trend": true
+    }
+  },
+
+  "web_interface": {
+    "port": 8501,
+    "host": "0.0.0.0",
+    "theme": "light",
+    "max_upload_size_mb": 200
+  },
+
+  "data_sources": {
+    "domain": {
+      "enabled": true,
+      "priority": 1,
+      "rate_limit_per_day": 500
+    },
+    "realestate_com_au": {
+      "enabled": true,
+      "priority": 2,
+      "use_cache": true
+    },
+    "nsw_valuer_general": {
+      "enabled": true,
+      "priority": 1,
+      "data_path": "data/nsw_sales/"
+    },
+    "abs_census": {
+      "enabled": true,
+      "priority": 3,
+      "data_path": "data/census_data/"
+    },
+    "sqm_research": {
+      "enabled": true,
+      "priority": 2,
+      "use_scraping": true
+    }
+  },
+
+  "features": {
+    "use_advanced_features": true,
+    "feature_engineering": {
+      "create_interaction_terms": true,
+      "polynomial_degree": 2,
+      "normalize_features": true
+    }
+  }
+}
